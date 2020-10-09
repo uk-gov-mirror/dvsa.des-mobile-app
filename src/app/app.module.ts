@@ -11,7 +11,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxsModule } from '@ngxs/store';
 import { environment } from '../environments/environment';
-import { JournalModule } from 'src/modules/journal/journal.module';
+import { JournalModule } from '../modules/journal/journal.module';
+import { TestsModule } from '../modules/tests/tests.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { JournalModule } from 'src/modules/journal/journal.module';
     }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     JournalModule,
+    TestsModule,
   ],
   providers: [
     StatusBar,
