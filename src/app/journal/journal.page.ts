@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Slot } from '../../types/journal.model';
 import { LoadJournal } from '../../modules/journal/journal.actions';
+import { SetCurrentTest } from '../../modules/tests/tests.actions';
 
 @Component({
   selector: 'app-journal',
@@ -13,7 +15,7 @@ export class JournalPage implements OnInit {
 
   slots$: Observable<Slot>;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private router: Router) {}
 
   ngOnInit() {
     this.slots$ = this.store.select(state => state.journal.slots);
@@ -26,6 +28,8 @@ export class JournalPage implements OnInit {
 
   onStartTestClick = (slotId: string) => {
     console.log(`slot ${slotId} will be started`);
+    this.router.navigate(['tests', slotId]);
+    this.store.dispatch(new SetCurrentTest(slotId));
   }
 
 }
