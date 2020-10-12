@@ -5,6 +5,7 @@ export class LoadJournal {
 
 export class LoadJournalSuccess {
   static readonly type = '[Journal API] Load Journal Success';
+  constructor(public data: any) {}
 }
 
 export class LoadJournalFailure {

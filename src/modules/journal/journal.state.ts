@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Action, State, StateContext, StateToken } from '@ngxs/store';
+import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
+import { JournalService } from 'src/services/journal/journal.service';
 import { JournalStateModel } from '../../types/journal.model';
-import { LoadJournal } from './journal.actions';
+import { LoadJournal, LoadJournalSuccess } from './journal.actions';
+
+import { of } from 'rxjs';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 
 const JOURNAL_STATE_TOKEN = new StateToken<JournalStateModel>('journal');
 
@@ -15,21 +19,38 @@ const JOURNAL_STATE_TOKEN = new StateToken<JournalStateModel>('journal');
 @Injectable()
 export class JournalState {
 
-  constructor() {}
+  constructor(private journalService: JournalService) {}
 
   @Action(LoadJournal)
   loadJournal(context: StateContext<JournalStateModel>) {
-    console.log(`Handling ${LoadJournal.type} action`);
+
+    const state = context.getState();
 
     context.setState({
-      slots: [
-        {id: '12345', appRef: '24306742010', category: 'B+E'},
-        {id: '12346', appRef: '24306744010', category: 'C'},
-        {id: '12347', appRef: '24306746010', category: 'B+E'},
-        {id: '12348', appRef: '24306755010', category: 'B+E'},
-        {id: '12349', appRef: '24306761010', category: 'C'},
-      ],
+      ...state,
       isLoading: true,
+    });
+
+    return this.journalService.fetchJournal()
+      .pipe(
+        switchMap(data => context.dispatch(new LoadJournalSuccess(data))),
+        catchError((err) => {
+          console.log(err);
+          return of(err);
+        }),
+      );
+  }
+
+  @Action(LoadJournalSuccess)
+  loadJournalSuccess(context: StateContext<JournalStateModel>, action: LoadJournalSuccess) {
+
+    console.log('here we are in Load Journal Success');
+
+    console.log('action is ', action);
+
+    context.patchState({
+      slots: action.data.testSlots,
+      isLoading: false,
     });
 
   }

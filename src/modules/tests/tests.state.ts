@@ -19,7 +19,7 @@ export class TestsState {
 
   @Action(SetCurrentTest)
   setCurrentTest(context: StateContext<TestsStateModel>, action: SetCurrentTest) {
-    
+
     const state = context.getState();
 
     context.setState({
@@ -32,6 +32,6 @@ export class TestsState {
 
   @Action(AddStartedTest)
   addStartedTest(context: StateContext<TestsStateModel>) {
-    
+
   }
 }
