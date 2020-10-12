@@ -29,7 +29,7 @@ export class JournalPage implements OnInit {
   onStartTestClick = (slotId: string) => {
     console.log(`slot ${slotId} will be started`);
     this.store.dispatch(new SetCurrentTest(slotId));
-    this.router.navigate(['tests', slotId]);
+    this.router.navigate(['tests']);
   }
 
 }

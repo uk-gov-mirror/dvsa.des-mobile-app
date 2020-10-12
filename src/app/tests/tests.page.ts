@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from '@angular/router';
-import { Store } from "@ngxs/store";
+import { Store, Select } from "@ngxs/store";
 import { Observable } from "rxjs";
-import { CommonTestResult } from "../../types/tests.model";
+import { CommonTestResult, TestResultUnion } from "../../types/tests.model";
 import { Slot } from 'src/types/journal.model';
+import { TestsState } from 'src/modules/tests/tests.state';
 
 @Component({
     selector: 'app-tests',
@@ -13,13 +13,11 @@ import { Slot } from 'src/types/journal.model';
 
 export class TestsPage implements OnInit {
 
-    testId: string;
-    testSlot$: Observable<Slot>
+  testSlot$: Observable<TestResultUnion>
 
-    constructor(private store: Store, private route: ActivatedRoute) {}
+  constructor(private store: Store) {}
 
-    ngOnInit() {
-        this.testId = this.route.snapshot.paramMap.get('id');
-        this.testSlot$ = this.store.select(state => state.journal.slots.find(slot => slot.id === this.testId));
-    }
+  ngOnInit() {
+      this.testSlot$ = this.store.select(TestsState.getCurrentTest);
+  }
 }

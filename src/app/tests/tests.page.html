@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar>
-      <ion-title>{{ testId }}</ion-title>
+      <ion-title *ngIf="testSlot$ | async as testSlot">{{ testSlot.id }}</ion-title>
     </ion-toolbar>
   </ion-header>
   

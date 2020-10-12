@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Action, State, StateContext, StateToken } from '@ngxs/store';
+import { Action, State, StateContext, StateToken, Selector } from '@ngxs/store';
 import { JournalStateModel } from '../../types/journal.model';
 import { LoadJournal } from './journal.actions';
 
@@ -31,7 +31,10 @@ export class JournalState {
       ],
       isLoading: true,
     });
-
   }
 
+  @Selector()
+  static getSlots(state: JournalStateModel) {
+    return state.slots;
+  }
 }
