@@ -1,28 +1,28 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
-      </ion-buttons>
-      <ion-title *ngIf="testSlot$ | async as testSlot">{{ testSlot.id }}</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
-    <ion-card class="journal-card">
-      <ion-card-header>
-        <ion-card-title>Today - Fri 9 Oct</ion-card-title>
-      </ion-card-header>
-  
-      <ion-card-content>
-        <div *ngIf="testSlot$ | async as testSlot" class='slot-container'>
-          <div>
-            Application Reference <strong>{{ testSlot.appRef }}</strong>
-          </div>
-          <div>
-            Category <strong>{{ testSlot.category }}</strong>
-          </div>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="testSlot$ | async as testSlot">{{ testSlot.id }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="journal-card">
+    <ion-card-header>
+      <ion-card-title>Today - Fri 9 Oct</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div *ngIf="testSlot$ | async as testSlot" class='slot-container'>
+        <div>
+          Application Reference <strong>{{ testSlot.appRef }}</strong>
         </div>
-      </ion-card-content>
-    </ion-card>
-  </ion-content>
+        <div>
+          Category <strong>{{ testSlot.category }}</strong>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
   

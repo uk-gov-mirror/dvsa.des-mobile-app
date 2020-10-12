@@ -8,11 +8,15 @@ export type CommonTestResult = {
 };
 
 export type CatBEUniqueTypes = {
-  uncoupleRecouple: boolean;
+  testData?: {
+    uncoupleRecouple: boolean;
+  };
 };
 
 export type CatCUniqueTypes = {
-  downhillStart: boolean;
+  testData?: {
+    downhillStart: boolean;
+  };
 };
 
 export type CatBETestResult = CommonTestResult & CatBEUniqueTypes;

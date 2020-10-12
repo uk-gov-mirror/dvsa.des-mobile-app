@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext, StateToken, Selector, Store } from '@ngxs/store';
-import { TestsStateModel, TestResultUnion } from '../../types/tests.model';
+import { TestsStateModel, TestResultUnion, CatBETestResult, CatCTestResult } from '../../types/tests.model';
 import { SetCurrentTest, AddStartedTest } from './tests.actions';
 
-import { JournalState } from "../journal/journal.state";
-import { JournalStateModel } from '../../types/journal.model';
+import { JournalState } from '../journal/journal.state';
 
 const TESTS_STATE_TOKEN = new StateToken<TestsStateModel>('tests');
 
@@ -21,30 +20,6 @@ export class TestsState {
 
   constructor(private store: Store) {}
 
-  @Action(SetCurrentTest)
-  setCurrentTest(context: StateContext<TestsStateModel>, action: SetCurrentTest) {
-
-    const state = context.getState();
-    const slots = this.store.selectSnapshot(JournalState.getSlots);
-    const slot = slots.find(slot => slot.id === action.testId);
-
-    const newSlot: TestResultUnion = {
-      id: slot.id,
-      appRef: slot.appRef,
-      category: slot.category,
-      uncoupleRecouple: false,
-      downhillStart: false
-    }
-
-    context.setState({
-      ...state,
-      currentTest: {
-        slotId: action.testId
-      },
-      startedTests: [...state.startedTests, newSlot]
-    });
-  }
-
   @Selector([JournalState])
   static getCurrentTest(state: TestsStateModel) {
     if (state.startedTests.length > 0) {
@@ -52,5 +27,51 @@ export class TestsState {
       const currentTestSlot = state.startedTests.find(test => test.id === currentTestId);
       return currentTestSlot ? currentTestSlot : null;
     }
+  }
+
+  @Action(SetCurrentTest)
+  setCurrentTest(context: StateContext<TestsStateModel>, action: SetCurrentTest) {
+
+    const state = context.getState();
+    const slots = this.store.selectSnapshot(JournalState.getSlots);
+    const slot = slots.find(s => s.id === action.testId);
+
+    const category = slot.category;
+
+    switch (category) {
+      case 'B+E':
+        const catBETestResult: CatBETestResult = {
+          ...slot
+        };
+
+        context.setState({
+          ...state,
+          currentTest: {
+            slotId: action.testId
+          },
+          startedTests: [...state.startedTests, catBETestResult]
+        });
+        break;
+      case 'C':
+        const catCTestResult: CatCTestResult = {
+          ...slot
+        };
+
+        context.setState({
+          ...state,
+          currentTest: {
+            slotId: action.testId
+          },
+          startedTests: [...state.startedTests, catCTestResult]
+        });
+        break;
+      default:
+        break;
+    }
+  }
+
+  @Action(AddStartedTest)
+  addStartedTest(context: StateContext<TestsStateModel>) {
+
   }
 }

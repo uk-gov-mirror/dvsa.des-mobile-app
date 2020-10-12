@@ -7,4 +7,3 @@ export class SetCurrentTest {
 export class AddStartedTest {
     static readonly type = '[Tests API] Add Started Test';
 }
-  
