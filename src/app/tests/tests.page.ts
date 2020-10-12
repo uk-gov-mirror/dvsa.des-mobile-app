@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { Store, Select } from "@ngxs/store";
+import { Store } from "@ngxs/store";
 import { Observable } from "rxjs";
-import { CommonTestResult, TestResultUnion } from "../../types/tests.model";
-import { Slot } from 'src/types/journal.model';
+import { TestResultUnion } from "../../types/tests.model";
 import { TestsState } from 'src/modules/tests/tests.state';
 
 @Component({
