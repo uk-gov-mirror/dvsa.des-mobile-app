@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'native-plugins-test',
+    loadChildren: () => import('./native-plugins-test/native-plugins-test.module').then( m => m.NativePluginsTestPageModule)
+  },
 ];
 
 @NgModule({
