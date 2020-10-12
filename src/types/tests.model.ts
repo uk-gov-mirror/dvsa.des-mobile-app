@@ -3,6 +3,7 @@ import { TestCategory } from './journal.model';
 
 export type CommonTestResult = {
   id: string;
+  appRef: string;
   category: TestCategory;
 };
 
