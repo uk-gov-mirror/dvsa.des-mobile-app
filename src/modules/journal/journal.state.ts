@@ -21,6 +21,11 @@ export class JournalState {
 
   constructor(private journalService: JournalService) {}
 
+  @Selector()
+  static getSlots(state: JournalStateModel) {
+    return state.slots;
+  }
+
   @Action(LoadJournal)
   loadJournal(context: StateContext<JournalStateModel>) {
 
@@ -54,5 +59,4 @@ export class JournalState {
     });
 
   }
-
 }

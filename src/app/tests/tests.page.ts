@@ -1,25 +1,21 @@
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from '@angular/router';
-import { Store } from "@ngxs/store";
-import { Observable } from "rxjs";
-import { CommonTestResult } from "../../types/tests.model";
-import { Slot } from 'src/types/journal.model';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { TestResultUnion } from '../../types/tests.model';
+import { TestsState } from 'src/modules/tests/tests.state';
 
 @Component({
     selector: 'app-tests',
     templateUrl: './tests.page.html',
     styleUrls: ['./tests.page.scss'],
 })
-
 export class TestsPage implements OnInit {
 
-    testId: string;
-    testSlot$: Observable<Slot>
+  testSlot$: Observable<TestResultUnion>;
 
-    constructor(private store: Store, private route: ActivatedRoute) {}
+  constructor(private store: Store) {}
 
-    ngOnInit() {
-        this.testId = this.route.snapshot.paramMap.get('id');
-        this.testSlot$ = this.store.select(state => state.journal.slots.find(slot => slot.id === this.testId));
-    }
+  ngOnInit() {
+      this.testSlot$ = this.store.select(TestsState.getCurrentTest);
+  }
 }
