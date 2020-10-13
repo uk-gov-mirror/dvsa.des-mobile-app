@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext, StateToken, Selector, Store } from '@ngxs/store';
-import { TestsStateModel, TestResultUnion, CatBETestResult, CatCTestResult } from '../../types/tests.model';
+import { TestsStateModel, CatBETestResult, CatCTestResult } from '../../types/tests.model';
 import { SetCurrentTest, AddStartedTest } from './tests.actions';
 
 import { JournalState } from '../journal/journal.state';
@@ -14,7 +14,6 @@ const TESTS_STATE_TOKEN = new StateToken<TestsStateModel>('tests');
     startedTests: [],
   },
 })
-
 @Injectable()
 export class TestsState {
 
@@ -41,7 +40,7 @@ export class TestsState {
     switch (category) {
       case 'B+E':
         const catBETestResult: CatBETestResult = {
-          ...slot
+          ...slot,
         };
 
         context.setState({
@@ -54,7 +53,7 @@ export class TestsState {
         break;
       case 'C':
         const catCTestResult: CatCTestResult = {
-          ...slot
+          ...slot,
         };
 
         context.setState({

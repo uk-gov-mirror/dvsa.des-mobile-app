@@ -1,22 +1,25 @@
 import { TestCategory } from './journal.model';
 
-
 export type CommonTestResult = {
   id: string;
   appRef: string;
   category: TestCategory;
 };
 
+export type CatBETestData = {
+  uncoupleRecouple: boolean;
+};
+
+export type CatCTestData = {
+  downhillStart: boolean;
+};
+
 export type CatBEUniqueTypes = {
-  testData?: {
-    uncoupleRecouple: boolean;
-  };
+  testData?: CatBETestData;
 };
 
 export type CatCUniqueTypes = {
-  testData?: {
-    downhillStart: boolean;
-  };
+  testData?: CatCTestData;
 };
 
 export type CatBETestResult = CommonTestResult & CatBEUniqueTypes;

@@ -1,4 +1,3 @@
-
 export class SetCurrentTest {
     static readonly type = '[Tests API] Set Current Test';
     constructor(public testId: string) {}
