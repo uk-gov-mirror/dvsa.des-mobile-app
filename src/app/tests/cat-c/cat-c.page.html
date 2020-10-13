@@ -1,9 +1,35 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>cat-c</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="testSlot$ | async as testSlot">{{ testSlot.id }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Today - Fri 9 Oct</ion-card-title>
+    </ion-card-header>
 
+    <ion-card-content>
+      <div *ngIf="testSlot$ | async as testSlot" class='slot-container'>
+        <div>
+          Application Reference <strong>{{ testSlot.appRef }}</strong>
+        </div>
+        <div>
+          Category <strong>{{ testSlot.category }}</strong>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <div class='slot-container'>
+        <ion-title size="small">Downhill start</ion-title>
+        <ion-toggle slot="start" [(ngModel)]="downhillStartSwitch" (ngModelChange)="onToggleChange($event)"></ion-toggle>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
