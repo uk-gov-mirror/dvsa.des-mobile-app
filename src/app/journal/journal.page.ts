@@ -26,10 +26,10 @@ export class JournalPage implements OnInit {
     this.store.dispatch(new LoadJournal());
   }
 
-  onStartTestClick = (slotId: string) => {
-    console.log(`slot ${slotId} will be started`);
+  onStartTestClick = (slotId: string, category: string) => {
+    console.log(`slot ${slotId} will be started with category ${category}`);
     this.store.dispatch(new SetCurrentTest(slotId));
-    this.router.navigate(['tests']);
+    this.router.navigate([category]);
   }
 
 }
