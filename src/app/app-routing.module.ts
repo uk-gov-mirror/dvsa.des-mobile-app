@@ -19,6 +19,14 @@ const routes: Routes = [
     path: 'tests',
     loadChildren: () => import('./tests/tests.module').then( m => m.TestsPageModule)
   },
+  {
+    path: 'B+E',
+    loadChildren: () => import('./tests/cat-be/cat-be.module').then( m => m.CatBePageModule)
+  },
+  {
+    path: 'C',
+    loadChildren: () => import('./tests/cat-c/cat-c.module').then( m => m.CatCPageModule)
+  },
 ];
 
 @NgModule({
