@@ -28,7 +28,12 @@
     <ion-card-content>
       <div class='slot-container'>
         <ion-title size="small">Downhill start</ion-title>
-        <ion-toggle slot="start" [(ngModel)]="downhillStartSwitch" (ngModelChange)="onToggleChange($event)"></ion-toggle>
+        <ion-toggle
+          slot="start" 
+          [checked]="(testData$ | async)?.downhillStart"
+          [value]="(testData$ | async)?.downhillStart"
+          (ionChange)="onToggleChange($event)"
+        ></ion-toggle>
       </div>
     </ion-card-content>
   </ion-card>
