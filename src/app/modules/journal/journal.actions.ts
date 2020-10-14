@@ -1,15 +1,15 @@
 import { createAction, props } from '@ngrx/store';
 
-export const LoadJournals = createAction(
-  '[Journal] Load Journals'
+export const LoadJournal = createAction(
+  '[Journal] Load Journal'
 );
 
-export const LoadJournalsSuccess = createAction(
+export const LoadJournalSuccess = createAction(
   '[Journal] Load Journals Success',
   props<{ data: any }>()
 );
 
-export const LoadJournalsFailure = createAction(
-  '[Journal] Load Journals Failure',
+export const LoadJournalFailure = createAction(
+  '[Journal] Load Journal Failure',
   props<{ error: any }>()
 );

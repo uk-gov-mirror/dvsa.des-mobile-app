@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>journal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="journal-card">
+    <ion-card-header>
+      <ion-card-title>Today - Fri 9 Oct</ion-card-title>
+      <ion-card-subtitle>
+        <ion-button (click)="onLoadJournalClick()">Load Journal</ion-button>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+
+    <ion-card-content>
+      <div *ngFor="let slot of (slots$ | async)" class='slot-container'>
+        <div>
+          Application Reference <strong>{{ slot.appRef }}</strong>
+        </div>
+        <div>
+          Category <strong>{{ slot.category }}</strong>
+        </div>
+        <div>
+          <ion-button color="secondary" (click)="onStartTestClick(slot.id, slot.category)">Start Test</ion-button>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

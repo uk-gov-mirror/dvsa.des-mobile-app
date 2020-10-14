@@ -1,5 +1,5 @@
 import { Action, createReducer, on, State } from '@ngrx/store';
-import { LoadJournals } from './journal.actions';
+import { LoadJournal } from './journal.actions';
 
 export const journalFeatureKey = 'journal';
 
@@ -28,7 +28,7 @@ export const initialState: ExaminersWorkSchedule = {
 
 export const JournalReducer = (state = initialState, action: Action): ExaminersWorkSchedule => {
   switch (action.type) {
-    case LoadJournals.type:
+    case LoadJournal.type:
       return {
         ...state,
         testsSlots: [
