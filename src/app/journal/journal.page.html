@@ -13,8 +13,10 @@
       </ion-card-subtitle>
     </ion-card-header>
 
-
     <ion-card-content>
+      <div *ngIf="isLoading$ | async" class='loading-spinner-container'>
+        <ion-spinner name="crescent"></ion-spinner>
+      </div>
       <div *ngFor="let slot of (slots$ | async)" class='slot-container'>
         <div>
           Application Reference <strong>{{ slot.appRef }}</strong>
