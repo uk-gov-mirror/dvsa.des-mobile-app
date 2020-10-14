@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { LoadJournals } from '../modules/journal/journal.actions';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +10,10 @@ import { Store } from '@ngrx/store';
 export class HomePage {
 
 
-  constructor() {}
-
-  OnInit() {
-    
+  constructor(private store: Store) {
+    this.store.dispatch(LoadJournals());
   }
 
+  OnInit() {
+  }
 }

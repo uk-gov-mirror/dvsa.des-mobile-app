@@ -19,7 +19,7 @@ export type PersonalCommitment = {
 export type ExaminersWorkSchedule = {
   testsSlots?: Slot[];
   personalCommitments?: PersonalCommitment[];
-}
+};
 
 export const initialState: ExaminersWorkSchedule = {
   testsSlots: [],
