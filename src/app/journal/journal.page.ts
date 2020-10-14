@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { LoadJournal } from '../modules/journal/journal.actions';
-import { Slot } from '../modules/journal/journal.reducer';
+import { ExaminersWorkSchedule, Slot } from '../modules/journal/journal.reducer';
 
 @Component({
   selector: 'app-journal',
@@ -12,12 +12,12 @@ import { Slot } from '../modules/journal/journal.reducer';
 })
 export class JournalPage implements OnInit {
 
-  slots$: Observable<Slot>;
+  slots$: Observable<Slot[]>;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store<{ journal: ExaminersWorkSchedule}>) { }
 
   ngOnInit() {
-    // this.slots$ = this.store.select(state => state.journal.testSlots);
+    this.slots$ = this.store.select(state => state.journal.testsSlots);
   }
 
   onLoadJournalClick() {
