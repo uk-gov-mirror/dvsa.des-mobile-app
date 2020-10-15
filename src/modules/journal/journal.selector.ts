@@ -14,3 +14,8 @@ export const selectIsLoading = createSelector(
   selectJournal,
   (journal: JournalStateModel): boolean => journal.isLoading,
 );
+
+export const selectSlotById = createSelector(
+  selectJournal,
+  (journal: JournalStateModel, { slotId }): Slot => journal.slots.find(slot => slot.id === slotId),
+);

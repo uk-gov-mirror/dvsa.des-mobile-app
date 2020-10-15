@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 import { StoreModel } from '../../types/store.model';
 
 import { LoadJournal } from '../../modules/journal/journal.actions';
-import { SetCurrentTest } from '../../modules/tests/tests.actions';
+import { StartedTest } from '../../modules/tests/tests.actions';
 import { Slot } from '../../types/journal.model';
-import { selectIsLoading, selectSlots } from 'src/modules/journal/journal.selector';
+import { selectIsLoading, selectSlotById, selectSlots } from 'src/modules/journal/journal.selector';
 
 @Component({
   selector: 'app-journal',
@@ -16,6 +16,7 @@ import { selectIsLoading, selectSlots } from 'src/modules/journal/journal.select
 })
 export class JournalPage implements OnInit {
 
+  slot$: Observable<Slot>;
   slots$: Observable<Slot[]>;
   isLoading$: Observable<boolean>;
 
@@ -32,8 +33,7 @@ export class JournalPage implements OnInit {
 
   onStartTestClick(slotId: string, category: string) {
     console.log(`slot ${slotId} will be started with category ${category}`);
-
-    this.store.dispatch(SetCurrentTest({ testId: slotId }));
+    this.store.dispatch(StartedTest({ slotId }));
     this.router.navigate(['tests', category]);
   }
 
