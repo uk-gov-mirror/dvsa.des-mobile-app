@@ -1,4 +1,4 @@
-import { reducer, initialState } from './journal.reducer';
+import { reducer, initialState } from '../journal.reducer';
 
 describe('Journal Reducer', () => {
   describe('an unknown action', () => {

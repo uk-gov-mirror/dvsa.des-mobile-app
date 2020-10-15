@@ -1,4 +1,4 @@
-import * as fromJournal from './journal.actions';
+import * as fromJournal from '../journal.actions';
 
 describe('loadJournals', () => {
   it('should return an action', () => {

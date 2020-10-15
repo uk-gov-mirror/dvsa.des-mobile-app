@@ -1,7 +1,14 @@
+
 .slot-container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+
+  margin: 24px;
   
-    margin: 24px;
-    
-  }
+}
+
+.loading-spinner-container {
+  display: flex;
+  justify-content: center;
+  margin: 24px;
+}

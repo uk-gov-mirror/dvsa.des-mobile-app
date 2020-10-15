@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { Slot } from 'src/types/journal.model';
 
 export const LoadJournal = createAction(
   '[Journal] Load Journal'
@@ -6,7 +7,7 @@ export const LoadJournal = createAction(
 
 export const LoadJournalSuccess = createAction(
   '[Journal] Load Journals Success',
-  props<{ data: any }>()
+  props<{ slots: Slot[] }>()
 );
 
 export const LoadJournalFailure = createAction(
