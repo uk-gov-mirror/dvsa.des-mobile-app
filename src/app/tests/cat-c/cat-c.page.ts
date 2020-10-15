@@ -20,4 +20,9 @@ export class CatCPage implements OnInit {
     this.testData$ = this.store.select(selectCurrentTest);
   }
 
+  onToggleChange(evt) {
+    const isChecked = evt.target.checked;
+    // this.store.dispatch();
+  }
+
 }
