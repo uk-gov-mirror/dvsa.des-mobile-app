@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { JournalStoreModule } from '../modules/journal/journal.module';
+import { TestsStoreModule } from '../modules/tests/tests.module';
 import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { EffectsModule } from '@ngrx/effects';
     EffectsModule.forRoot(),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     JournalStoreModule,
+    TestsStoreModule,
   ],
   providers: [
     StatusBar,
