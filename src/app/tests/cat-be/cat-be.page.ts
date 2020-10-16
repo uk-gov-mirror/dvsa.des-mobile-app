@@ -15,4 +15,9 @@ export class CatBePage implements OnInit {
   ngOnInit() {
   }
 
+  onToggleChange(evt) {
+    const isChecked = evt.target.checked;
+    // this.store.dispatch();
+  }
+
 }

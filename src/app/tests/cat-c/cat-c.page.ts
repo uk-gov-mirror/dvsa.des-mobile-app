@@ -16,4 +16,9 @@ export class CatCPage implements OnInit {
   ngOnInit() {
   }
 
+  onToggleChange(evt) {
+    const isChecked = evt.target.checked;
+    // this.store.dispatch();
+  }
+
 }
