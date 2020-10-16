@@ -6,6 +6,7 @@ import { StoreModel } from '../../types/store.model';
 export const selectTests = (state: StoreModel): TestsStateModel => state.tests;
 
 export const selectCurrentTest = createSelector(
-    selectTests,
-    (tests: TestsStateModel): TestResultUnion => tests.startedTests.find(startedTest => startedTest.id === tests.currentTest.slotId),
+  selectTests,
+  (tests: TestsStateModel): TestResultUnion =>
+      tests.startedTests[tests.currentTest.slotId],
 );

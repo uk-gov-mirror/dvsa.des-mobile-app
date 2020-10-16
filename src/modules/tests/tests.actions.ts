@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { TestResultUnion } from 'src/types/tests.model';
+import { TestCategory } from 'src/types/journal.model';
 
 export const StartedTest = createAction(
   '[Tests] Start Test',
@@ -13,5 +13,5 @@ export const SetCurrentTest = createAction(
 
 export const AddStartedTest = createAction(
   '[Tests] Add Started Test',
-  props<{ startedTest: TestResultUnion }>()
+  props<{ slotId: string, category: TestCategory }>()
 );

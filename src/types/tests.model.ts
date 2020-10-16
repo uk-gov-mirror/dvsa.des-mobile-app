@@ -1,10 +1,14 @@
 
 import { TestCategory } from './journal.model';
 
-export type CommonTestResult = {
+export type JournalData = {
   id: string;
   appRef: string;
   category: TestCategory;
+};
+
+export type CommonTestResult = {
+  journalData: JournalData;
 };
 
 export type CatBETestData = {
@@ -32,5 +36,5 @@ export type TestsStateModel = {
   currentTest: {
     slotId?: string;
   },
-  startedTests: TestResultUnion[],
+  startedTests: { [slotId: string]: TestResultUnion };
 };
