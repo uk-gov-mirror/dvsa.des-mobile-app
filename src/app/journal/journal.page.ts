@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { JournalService } from 'src/services/journal/journal.service';
 
+import { JournalQuery } from '../../modules/journal/journal.query';
+
 @Component({
   selector: 'app-journal',
   templateUrl: './journal.page.html',
@@ -8,14 +10,15 @@ import { JournalService } from 'src/services/journal/journal.service';
 })
 export class JournalPage implements OnInit {
 
-  constructor(private journalService: JournalService) { }
+  slots$ = this.journalQuery.allSlots$;
+  isLoading$ = this.journalQuery.isLoading$;
+
+  constructor(private journalService: JournalService, private journalQuery: JournalQuery) { }
 
   ngOnInit() {
   }
 
   onLoadJournalClick() {
-    console.log('akita store dispatch LoadJournal');
-
     this.journalService.fetchJournal();
   }
 
