@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Plugins } from '@capacitor/core';
+import { Insomnia } from '@ionic-native/insomnia';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { StatusBar } from '@ionic-native/status-bar';
 
 const { Device, Network } = Plugins;
 
@@ -13,10 +16,31 @@ declare var cordova: any;
 export class NativePluginsTestPage implements OnInit {
 
   ASAM = false;
+  insomniaEnabled = false;
+  screenOrientationLocked = false;
+  statusBarShowing = true;
 
-  constructor() { }
+  constructor(
+    private insomnia: Insomnia,
+    private screenOrientation: ScreenOrientation,
+    private statusBar: StatusBar,
+  ) { }
 
   ngOnInit() {
+  }
+
+  toggleInsomnia() {
+    this.insomniaEnabled ? this.insomnia.allowSleepAgain() : this.insomnia.keepAwake();
+  }
+
+  toggleScreenOrientationLock() {
+    this.screenOrientationLocked ?
+      this.screenOrientation.unlock() :
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
+  }
+
+  toggleStatusBar() {
+    this.statusBarShowing ? this.statusBar.hide() : this.statusBar.show();
   }
 
   toggleASAM() {
