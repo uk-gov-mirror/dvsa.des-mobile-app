@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { EMPTY, of } from 'rxjs';
-import { catchError, concatMap, map, switchMap, withLatestFrom } from 'rxjs/operators';
-import { ExaminerWorkSchedule, Slot } from 'src/types/journal.model';
+import { of } from 'rxjs';
+import { concatMap, switchMap, withLatestFrom } from 'rxjs/operators';
 import { TestResultUnion } from 'src/types/tests.model';
 import { StoreModel } from '../../types/store.model';
 import { selectSlots } from '../journal/journal.selector';

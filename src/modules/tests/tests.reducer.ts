@@ -1,6 +1,5 @@
-import { createReducer, on, Store } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { TestsStateModel } from '../../types/tests.model';
-import { selectSlotById } from '../journal/journal.selector';
 import { AddStartedTest, SetCurrentTest } from './tests.actions';
 
 export const testsFeatureKey = 'tests';
@@ -15,7 +14,7 @@ export const testsReducer = createReducer(
   on(SetCurrentTest, (state: TestsStateModel, { testId }) => ({
     ...state,
     currentTest: {
-        slotId: testId
+      slotId: testId
     }
   })),
   on(AddStartedTest, (state: TestsStateModel, { startedTest }) => ({
