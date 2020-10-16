@@ -8,11 +8,21 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { JournalStoreModule } from '../modules/journal/journal.module';
+import { environment } from 'src/environments/environment';
+
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    JournalStoreModule,
+    environment.production ? [] : AkitaNgDevtools.forRoot()
+  ],
   providers: [
     StatusBar,
     SplashScreen,
