@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TestsCatBEService } from 'src/services/tests/cat-be/tests.cat-be.service';
 import { TestsQuery } from '../../../modules/tests/tests.query';
 
 @Component({
@@ -8,16 +9,20 @@ import { TestsQuery } from '../../../modules/tests/tests.query';
 })
 export class CatBePage implements OnInit {
 
-  testData$ = this.testsQuery.currentTest$;
+  testResult$ = this.testsQuery.currentTest$;
 
-  constructor(private testsQuery: TestsQuery) { }
+  constructor(
+    private testsQuery: TestsQuery,
+    private testsCatBEService: TestsCatBEService,
+  ) {}
 
   ngOnInit() {
   }
 
   onToggleChange(evt) {
     const isChecked = evt.target.checked;
-    // this.store.dispatch();
+
+    this.testsCatBEService.setUncoupleRecouple(isChecked);
   }
 
 }

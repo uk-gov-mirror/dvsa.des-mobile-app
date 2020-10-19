@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title *ngIf="testData$ | async as testData">{{ testData.id }}</ion-title>
+    <ion-title *ngIf="testResult$ | async as testResult">{{ testResult.id }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,12 +14,12 @@
     </ion-card-header>
 
     <ion-card-content>
-      <div *ngIf="testData$ | async as testData" class='slot-container'>
+      <div *ngIf="testResult$ | async as testResult" class='slot-container'>
         <div>
-          Application Reference <strong>{{ testData.appRef }}</strong>
+          Application Reference <strong>{{ testResult.appRef }}</strong>
         </div>
         <div>
-          Category <strong>{{ testData.category }}</strong>
+          Category <strong>{{ testResult.category }}</strong>
         </div>
       </div>
     </ion-card-content>
@@ -30,8 +30,8 @@
         <ion-title size="small">Downhill start</ion-title>
         <ion-toggle
           slot="start" 
-          [checked]="(testData$ | async)?.downhillStart"
-          [value]="(testData$ | async)?.downhillStart"
+          [checked]="(testResult$ | async)?.testData?.downhillStart"
+          [value]="(testResult$ | async)?.testData?.downhillStart"
           (ionChange)="onToggleChange($event)"
         ></ion-toggle>
       </div>

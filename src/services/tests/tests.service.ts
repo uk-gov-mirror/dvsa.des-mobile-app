@@ -1,17 +1,31 @@
 import { Injectable } from '@angular/core';
 import { TestsStore } from '../../modules/tests/tests.store';
 import { JournalQuery } from '../../modules/journal/journal.query';
-import { Slot } from '../../types/journal.model';
-import { TestResultUnion, CatBETestResult, CatCTestResult } from 'src/types/tests.model';
+import { CatBETestResult, CatCTestResult } from 'src/types/tests.model';
+import { TestsQuery } from 'src/modules/tests/tests.query';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestsService {
 
-  constructor(private testsStore: TestsStore, private journalQuery: JournalQuery) { }
+  constructor(
+    private testsStore: TestsStore,
+    private testsQuery: TestsQuery,
+    private journalQuery: JournalQuery,
+  ) {}
 
   public setCurrentTest(slotId: string): void {
+
+    if (this.slotExists(slotId)) {
+      this.testsStore.update(state => ({
+        ...state,
+        currentTest: { slotId },
+      }));
+
+      return;
+    }
+
     const journalSlots = this.journalQuery.allJournalSlots;
     const selectedSlot = journalSlots.find(slot => slot.id === slotId);
 
@@ -39,4 +53,9 @@ export class TestsService {
       ]
     }));
   }
+
+  private slotExists(slotId: string): boolean {
+    return this.testsQuery.getValue().startedTests.some(test => test.id === slotId);
+  }
+
 }

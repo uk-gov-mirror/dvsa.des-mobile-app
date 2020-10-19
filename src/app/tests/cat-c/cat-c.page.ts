@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TestsCatCService } from 'src/services/tests/cat-c/tests.cat-c.service';
 import { TestsQuery } from '../../../modules/tests/tests.query';
-
 
 @Component({
   selector: 'app-cat-c',
@@ -9,16 +9,20 @@ import { TestsQuery } from '../../../modules/tests/tests.query';
 })
 export class CatCPage implements OnInit {
 
-  testData$ = this.testsQuery.currentTest$;
+  testResult$ = this.testsQuery.currentTest$;
 
-  constructor(private testsQuery: TestsQuery) { }
+  constructor(
+    private testsQuery: TestsQuery,
+    private testsCatCService: TestsCatCService,
+  ) {}
 
   ngOnInit() {
   }
 
   onToggleChange(evt) {
     const isChecked = evt.target.checked;
-    // this.store.dispatch();
+
+    this.testsCatCService.setDownhillStart(isChecked);
   }
 
 }

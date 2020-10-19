@@ -1,4 +1,3 @@
-import { InjectableCompiler } from '@angular/compiler/src/injectable_compiler';
 import { Injectable } from '@angular/core';
 import { Query } from '@datorama/akita';
 import { TestsStateModel } from '../../types/tests.model';
@@ -12,4 +11,13 @@ export class TestsQuery extends Query<TestsStateModel> {
   constructor(protected store: TestsStore) {
     super(store);
   }
+
+  get currentTestSlotId() {
+    return this.getValue().currentTest.slotId;
+  }
+
+  get currentTest() {
+    return this.getValue().startedTests.find(test => test.id === this.currentTestSlotId);
+  }
+
 }
