@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Plugins } from '@capacitor/core';
-import { Insomnia } from '@ionic-native/insomnia';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
-import { StatusBar } from '@ionic-native/status-bar';
+import { Insomnia } from '@ionic-native/insomnia/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 const { Device, Network } = Plugins;
 
