@@ -29,6 +29,15 @@ export class NativePluginsTestPage implements OnInit {
   ngOnInit() {
   }
 
+  printCordovaPlugins() {
+    if (typeof cordova !== 'undefined') {
+      console.log('### cordova plugins');
+      console.log(JSON.stringify(Object.keys(cordova.plugins)));
+    } else {
+      console.log('### cordova is undefined');
+    }
+  }
+
   toggleInsomnia() {
     this.insomniaEnabled ? this.insomnia.allowSleepAgain() : this.insomnia.keepAwake();
   }
