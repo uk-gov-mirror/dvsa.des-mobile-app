@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Search Tests</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Candidate details</ion-card-title>
+    </ion-card-header>
+
+    <ion-list>
+      <ion-radio-group value="biff">
+        <ion-list-header>
+          <ion-label>Search by</ion-label>
+        </ion-list-header>
+    
+        <ion-item>
+          <ion-label>Driver number</ion-label>
+          <ion-radio slot="start" value="driver"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Application reference</ion-label>
+          <ion-radio slot="start" value="application"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+    <ion-card-content>
+      <ion-input id="search-input" placeholder="Enter a driver number or application reference"></ion-input>
+      <ion-button>Search</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
