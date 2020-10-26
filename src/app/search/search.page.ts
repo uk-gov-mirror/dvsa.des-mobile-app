@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-const searchBy = {
-  DRIVER_NUMBER: 'driverNumber',
-  APP_REF: 'applicationRef'
-};
+enum SearchBy {
+  DriverNumber = 'driverNumber',
+  ApplicationReference = 'appReference',
+}
 
 @Component({
   selector: 'app-search',
@@ -13,7 +13,7 @@ const searchBy = {
 export class SearchPage implements OnInit {
 
   searchInput = '4001928472';
-  searchByType = searchBy.DRIVER_NUMBER;
+  searchBy = SearchBy.ApplicationReference;
   searchResults = null;
 
   constructor() { }
@@ -21,16 +21,12 @@ export class SearchPage implements OnInit {
   ngOnInit() {
   }
 
-  onSearchByChange(evt) {
-    if (evt.detail.value === searchBy.DRIVER_NUMBER) {
-      this.searchByType = searchBy.DRIVER_NUMBER;
-    } else if (evt.detail.value === searchBy.APP_REF) {
-      this.searchByType = searchBy.APP_REF;
-    }
+  onSearchByChange(val: SearchBy) {
+    this.searchBy = val;
   }
 
   onSearchClick() {
-    console.log(`Searching ${this.searchInput} under ${this.searchByType}`);
+    console.log(`Searching ${this.searchInput} under ${this.searchBy}`);
     this.searchResults = [];
   }
 }

@@ -14,7 +14,7 @@
     </ion-card-header>
 
     <ion-list>
-      <ion-radio-group value="driver" (ionChange)="onSearchByChange($event)">
+      <ion-radio-group value="driver" (ionChange)="onSearchByChange($event.target.value)">
         <ion-list-header>
           <ion-label>Search by</ion-label>
         </ion-list-header>
@@ -26,7 +26,7 @@
 
         <ion-item>
           <ion-label>Application reference</ion-label>
-          <ion-radio slot="start" value="applicationRef"></ion-radio>
+          <ion-radio slot="start" value="appReference"></ion-radio>
         </ion-item>
       </ion-radio-group>
     </ion-list>
