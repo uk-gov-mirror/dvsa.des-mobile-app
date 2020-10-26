@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchResultTestSchema } from '@dvsa/mes-search-schema';
 
 enum SearchBy {
   DriverNumber = 'driverNumber',
@@ -14,7 +15,7 @@ export class SearchPage implements OnInit {
 
   searchInput = '4001928472';
   searchBy = SearchBy.ApplicationReference;
-  searchResults = null;
+  searchResults: SearchResultTestSchema[] = [];
 
   constructor() { }
 
@@ -26,7 +27,14 @@ export class SearchPage implements OnInit {
   }
 
   onSearchClick() {
-    console.log(`Searching ${this.searchInput} under ${this.searchBy}`);
     this.searchResults = [];
+
+    if (this.searchBy === SearchBy.DriverNumber) {
+      console.log(`Searching ${this.searchInput} under ${this.searchBy}`);
+    }
+
+    if (this.searchBy === SearchBy.ApplicationReference) {
+      console.log(`Searching ${this.searchInput} under ${this.searchBy}`);
+    }
   }
 }
