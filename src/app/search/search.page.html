@@ -41,19 +41,40 @@
   </div>
 
   <ng-template #result>
-    <ion-card *ngFor="let result of (searchResults$ | async)">
+    <ion-card *ngFor="let searchResult of (searchResults$ | async)">
       <ion-card-content>
-        <div class='slot-container'>
-          <div>
-            Application Reference <strong>{{ result.appRef }}</strong>
-          </div>
-          <div>
-            Category <strong>{{ result.category }}</strong>
-          </div>
-          <div>
-            Driver Name <strong>{{ result.candidateName.firstName }}</strong>
-          </div>
-        </div>
+        <ion-grid>
+          <ion-row class='top-row'>
+            <ion-col>
+              <div>{{searchResult.costCode}}</div>
+            </ion-col>
+            <ion-col>
+              <div>App ref: {{searchResult.applicationReference}}</div>
+            </ion-col>
+          </ion-row>
+          <ion-row class='middle-row'>
+            <ion-col>
+              <h2>{{getTime(searchResult.testDate)}}</h2>
+            </ion-col>
+            <ion-col>
+              <h3>{{getName(searchResult.candidateName)}}</h3>
+            </ion-col>
+            <ion-col>
+              <h2>{{searchResult.category}}</h2>
+            </ion-col>
+            <ion-col>
+              <h2>{{searchResult.activityCode}}</h2>
+            </ion-col>
+          </ion-row>
+          <ion-row class='bottom-row'>
+            <ion-col>
+              <div>{{getDate(searchResult.testDate)}}</div>
+            </ion-col>
+            <ion-col>
+              <div>Driver no: {{searchResult.driverNumber}}</div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-card-content>
     </ion-card>
   </ng-template>

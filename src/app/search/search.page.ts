@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchResultTestSchema } from '@dvsa/mes-search-schema';
+import { SearchResultTestSchema, Name } from '@dvsa/mes-search-schema';
 import { Store } from '@ngrx/store';
 
 import { StoreModel } from '../../types/store.model';
 import { PerformDriverNumberSearch, PerformApplicationReferenceSearch } from '../../modules/search/search.actions';
 import { selectSearchResults, selectIsSearchLoading } from '../../modules/search/search.selectors';
 import { Observable } from 'rxjs';
+import { DateTime } from 'src/shared/helpers/date-time';
+import * as moment from 'moment';
 
 enum SearchBy {
   DriverNumber = 'driverNumber',
@@ -45,5 +47,18 @@ export class SearchPage implements OnInit {
     }
 
     this.hasSearched = true;
+  }
+
+  getDate(date: string): string {
+    return new DateTime(date).format('DD/MM/YYYY');
+  }
+
+  getTime(time: string): string {
+    return moment(time).format('HH:mm');
+  }
+
+  getName(candidateName: Name): string {
+    const name: Name = candidateName;
+    return name.title ? `${name.title} ${name.firstName} ${name.lastName}` : `${name.firstName} ${name.lastName}`;
   }
 }
