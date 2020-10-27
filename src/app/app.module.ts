@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environment';
 import { SearchStoreModel } from '../modules/search/search.module';
 
@@ -21,6 +22,7 @@ import { SearchStoreModel } from '../modules/search/search.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     StoreModule.forRoot({}),
+    EffectsModule.forRoot(),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     SearchStoreModel,
   ],

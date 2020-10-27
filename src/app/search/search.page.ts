@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResultTestSchema } from '@dvsa/mes-search-schema';
+import { Store } from '@ngrx/store';
+
+import { StoreModel } from '../../types/store.model';
+import { PerformDriverNumberSearch } from '../../modules/search/search.actions';
 
 enum SearchBy {
   DriverNumber = 'driverNumber',
@@ -17,7 +21,7 @@ export class SearchPage implements OnInit {
   searchBy = SearchBy.ApplicationReference;
   searchResults: SearchResultTestSchema[] = [];
 
-  constructor() { }
+  constructor(private store: Store<StoreModel>) { }
 
   ngOnInit() {
   }
@@ -31,6 +35,7 @@ export class SearchPage implements OnInit {
 
     if (this.searchBy === SearchBy.DriverNumber) {
       console.log(`Searching ${this.searchInput} under ${this.searchBy}`);
+      this.store.dispatch(PerformDriverNumberSearch({ driverNumber: 'ABC123EFG' }));
     }
 
     if (this.searchBy === SearchBy.ApplicationReference) {

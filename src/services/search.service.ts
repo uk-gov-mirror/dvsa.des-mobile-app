@@ -64,7 +64,7 @@ export class SearchService {
 
   public fetchTestsByApplicationReference(appRef: number): Observable<SearchResultTestSchema[]> {
     const tests: SearchResultTestSchema[] = this.tests.filter((test: SearchResultTestSchema) => test.applicationReference === appRef);
-  
+
     if (tests.length > 0) {
       return of(tests).pipe(delay(1000));
     } else {
