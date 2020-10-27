@@ -36,13 +36,14 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
-    <ion-card-content>
-      <div *ngIf="isLoading$ | async; else result" class='loading-spinner-container'>
-        <ion-spinner name="crescent"></ion-spinner>
-      </div>
-      <ng-template #result>
-        <div *ngFor="let result of (searchResults$ | async)" class='slot-container'>
+  <div *ngIf="isLoading$ | async; else result" class='loading-spinner-container'>
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <ng-template #result>
+    <ion-card *ngFor="let result of (searchResults$ | async)">
+      <ion-card-content>
+        <div class='slot-container'>
           <div>
             Application Reference <strong>{{ result.appRef }}</strong>
           </div>
@@ -53,11 +54,12 @@
             Driver Name <strong>{{ result.candidateName.firstName }}</strong>
           </div>
         </div>
-      </ng-template>
-    </ion-card-content>
-  </ion-card>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
 
-  <ion-card *ngIf="searchResults?.length === 0">
+  
+  <!-- <ion-card *ngIf="searchResults?.length === 0">
     <ion-card-content>
       <div>
         There were no results found for <b>{{searchInput}}</b>
@@ -67,4 +69,5 @@
       </div>
     </ion-card-content>
   </ion-card>
+  -->
 </ion-content>

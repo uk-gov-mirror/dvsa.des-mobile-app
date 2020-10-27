@@ -19,10 +19,8 @@ enum SearchBy {
 })
 export class SearchPage implements OnInit {
 
-  searchInput = '4001928472';
   searchBy = SearchBy.ApplicationReference;
-  searchResults: SearchResultTestSchema[] = [];
-
+  hasSearched = false;
   searchResults$: Observable<SearchResultTestSchema[]>;
   isLoading$: Observable<boolean>;
 
@@ -38,8 +36,6 @@ export class SearchPage implements OnInit {
   }
 
   onSearchClick() {
-    this.searchResults = [];
-
     if (this.searchBy === SearchBy.DriverNumber) {
       this.store.dispatch(PerformDriverNumberSearch({ driverNumber: 'ABC123EFG' }));
     }
@@ -47,5 +43,7 @@ export class SearchPage implements OnInit {
     if (this.searchBy === SearchBy.ApplicationReference) {
       this.store.dispatch(PerformApplicationReferenceSearch({ applicationReference: 123457 }));
     }
+
+    this.hasSearched = true;
   }
 }
