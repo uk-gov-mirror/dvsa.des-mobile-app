@@ -4,6 +4,8 @@ import { Store } from '@ngrx/store';
 
 import { StoreModel } from '../../types/store.model';
 import { PerformDriverNumberSearch } from '../../modules/search/search.actions';
+import { selectSearchResults, selectIsSearchLoading } from '../../modules/search/search.selectors';
+import { Observable } from 'rxjs';
 
 enum SearchBy {
   DriverNumber = 'driverNumber',
@@ -21,9 +23,14 @@ export class SearchPage implements OnInit {
   searchBy = SearchBy.ApplicationReference;
   searchResults: SearchResultTestSchema[] = [];
 
+  searchResults$: Observable<SearchResultTestSchema[]>;
+  isLoading$: Observable<boolean>;
+
   constructor(private store: Store<StoreModel>) { }
 
   ngOnInit() {
+    this.searchResults$ = this.store.select(selectSearchResults);
+    this.isLoading$ = this.store.select(selectIsSearchLoading);
   }
 
   onSearchByChange(val: SearchBy) {

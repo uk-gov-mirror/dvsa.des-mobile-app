@@ -3,3 +3,15 @@
   border-radius: 5px;
   margin: 1rem 0;
 }
+
+.slot-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 24px;
+}
+
+.loading-spinner-container {
+  display: flex;
+  justify-content: center;
+  margin: 24px;
+}

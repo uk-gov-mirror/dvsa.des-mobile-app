@@ -24,6 +24,19 @@ export class SearchService {
     },
     {
       activityCode: '1',
+      applicationReference: 123460,
+      category: 'B+E',
+      costCode: 'abcd',
+      testDate: '2019-06-24T09:00:00',
+      driverNumber: 'ABC123EFG',
+      candidateName: {
+        firstName: 'Joe',
+        lastName: 'Blogs',
+        title: 'Mr',
+      },
+    },
+    {
+      activityCode: '1',
       applicationReference: 123457,
       category: 'C',
       costCode: 'abcd',

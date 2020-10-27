@@ -35,6 +35,26 @@
       <ion-button (click)="onSearchClick()">Search</ion-button>
     </ion-card-content>
   </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <div *ngIf="isLoading$ | async" class='loading-spinner-container'>
+        <ion-spinner name="crescent"></ion-spinner>
+      </div>
+      <div *ngFor="let result of (searchResults$ | async)" class='slot-container'>
+        <div>
+          Application Reference <strong>{{ result.appRef }}</strong>
+        </div>
+        <div>
+          Category <strong>{{ result.category }}</strong>
+        </div>
+        <div>
+          Driver Name <strong>{{ result.candidateName.firstName }}</strong>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
   <ion-card *ngIf="searchResults?.length === 0">
     <ion-card-content>
       <div>
