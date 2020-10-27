@@ -1,6 +1,11 @@
 import { createReducer, on, State } from '@ngrx/store';
 import { SearchStateModel } from 'src/types/search.model';
-import { PerformDriverNumberSearch, PerformDriverNumberSearchSuccess } from './search.actions';
+import {
+  PerformDriverNumberSearch,
+  PerformDriverNumberSearchSuccess,
+  PerformApplicationReferenceSearch,
+  PerformApplicationReferenceSearchSuccess,
+} from './search.actions';
 
 export const searchFeatureKey = 'search';
 
@@ -19,5 +24,14 @@ export const searchReducer = createReducer(
     ...state,
     isLoading: false,
     results,
-  }))
+  })),
+  on(PerformApplicationReferenceSearch, (state: SearchStateModel) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(PerformApplicationReferenceSearchSuccess, (state: SearchStateModel, { results }) => ({
+    ...state,
+    isLoading: false,
+    results,
+  })),
 );

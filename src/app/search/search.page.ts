@@ -3,7 +3,7 @@ import { SearchResultTestSchema } from '@dvsa/mes-search-schema';
 import { Store } from '@ngrx/store';
 
 import { StoreModel } from '../../types/store.model';
-import { PerformDriverNumberSearch } from '../../modules/search/search.actions';
+import { PerformDriverNumberSearch, PerformApplicationReferenceSearch } from '../../modules/search/search.actions';
 import { selectSearchResults, selectIsSearchLoading } from '../../modules/search/search.selectors';
 import { Observable } from 'rxjs';
 
@@ -41,12 +41,11 @@ export class SearchPage implements OnInit {
     this.searchResults = [];
 
     if (this.searchBy === SearchBy.DriverNumber) {
-      console.log(`Searching ${this.searchInput} under ${this.searchBy}`);
       this.store.dispatch(PerformDriverNumberSearch({ driverNumber: 'ABC123EFG' }));
     }
 
     if (this.searchBy === SearchBy.ApplicationReference) {
-      console.log(`Searching ${this.searchInput} under ${this.searchBy}`);
+      this.store.dispatch(PerformApplicationReferenceSearch({ applicationReference: 123457 }));
     }
   }
 }

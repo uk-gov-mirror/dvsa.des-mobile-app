@@ -1,4 +1,4 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { createSelector } from '@ngrx/store';
 import { SearchResultTestSchema } from '@dvsa/mes-search-schema';
 import { StoreModel } from '../../types/store.model';
 import { SearchStateModel } from '../../types/search.model';

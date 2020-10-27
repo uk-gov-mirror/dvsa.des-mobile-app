@@ -38,20 +38,22 @@
 
   <ion-card>
     <ion-card-content>
-      <div *ngIf="isLoading$ | async" class='loading-spinner-container'>
+      <div *ngIf="isLoading$ | async; else result" class='loading-spinner-container'>
         <ion-spinner name="crescent"></ion-spinner>
       </div>
-      <div *ngFor="let result of (searchResults$ | async)" class='slot-container'>
-        <div>
-          Application Reference <strong>{{ result.appRef }}</strong>
+      <ng-template #result>
+        <div *ngFor="let result of (searchResults$ | async)" class='slot-container'>
+          <div>
+            Application Reference <strong>{{ result.appRef }}</strong>
+          </div>
+          <div>
+            Category <strong>{{ result.category }}</strong>
+          </div>
+          <div>
+            Driver Name <strong>{{ result.candidateName.firstName }}</strong>
+          </div>
         </div>
-        <div>
-          Category <strong>{{ result.category }}</strong>
-        </div>
-        <div>
-          Driver Name <strong>{{ result.candidateName.firstName }}</strong>
-        </div>
-      </div>
+      </ng-template>
     </ion-card-content>
   </ion-card>
 
