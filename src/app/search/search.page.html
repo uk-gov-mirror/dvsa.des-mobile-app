@@ -36,7 +36,7 @@
         [placeholder]="searchBy === 'appReference' ? 'Enter an application reference' : 'Enter a driver number' "
         [value]="searchInput"
         (ionChange)="searchInputChanged($event.target.value)"></ion-input>
-      <ion-button (click)="onSearchClick()">Search</ion-button>
+      <ion-button expand="block" (click)="onSearchClick()">Search</ion-button>
     </ion-card-content>
   </ion-card>
 
@@ -49,7 +49,7 @@
       <ion-card *ngIf="hasSearched && searchResults.length === 0; else data">
         <ion-card-content>
           <p class="error-text">
-            There were no results found for <strong>{{searchInputFinal}}</strong>.
+            There were no results found for "<strong>{{searchInputFinal}}</strong>"
           </p>
           <p class="error-text">
             Please check and try again.
@@ -57,6 +57,7 @@
         </ion-card-content>
       </ion-card>
       <ng-template #data>
+        <h3 *ngIf="searchResults.length > 0" id="result-number">Displaying {{searchResults.length}} result<span *ngIf="searchResults.length !== 1">s</span> found</h3>
         <ion-card *ngFor="let searchResult of searchResults">
           <ion-card-content class="search-result">
             <ion-grid>

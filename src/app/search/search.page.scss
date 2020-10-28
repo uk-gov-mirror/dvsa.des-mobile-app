@@ -2,6 +2,11 @@
   border: 1px solid #a1a1a1;
   border-radius: 5px;
   margin: 1rem 0;
+  color: #FFF;
+}
+
+#result-number {
+  margin-left: 24px;
 }
 
 .slot-container {
@@ -18,11 +23,6 @@
 
 .search-result {
   color: #FFFFFF;
-}
-
-.highlight {
-  font-size: 36;
-  
 }
 
 .card-ios {
