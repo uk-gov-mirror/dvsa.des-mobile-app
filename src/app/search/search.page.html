@@ -44,53 +44,56 @@
     <ion-spinner name="crescent"></ion-spinner>
   </div>
 
-  <ion-card *ngIf="hasSearched && !(searchResults$ | async)">
-    <ion-card-content>
-      <p class="error-text">
-        There were no results found for your search.
-      </p>
-      <p class="error-text">
-        Please check and try again.
-      </p>
-    </ion-card-content>
-  </ion-card>
-
   <ng-template #result>
-    <ion-card *ngFor="let searchResult of (searchResults$ | async)">
-      <ion-card-content>
-        <ion-grid>
-          <ion-row class='top-row'>
-            <ion-col>
-              <div>{{searchResult.costCode}}</div>
-            </ion-col>
-            <ion-col>
-              <div>App ref: {{searchResult.applicationReference}}</div>
-            </ion-col>
-          </ion-row>
-          <ion-row class='middle-row'>
-            <ion-col>
-              <h2>{{getTime(searchResult.testDate)}}</h2>
-            </ion-col>
-            <ion-col>
-              <h3>{{getName(searchResult.candidateName)}}</h3>
-            </ion-col>
-            <ion-col>
-              <h2>{{searchResult.category}}</h2>
-            </ion-col>
-            <ion-col>
-              <h2>{{searchResult.activityCode}}</h2>
-            </ion-col>
-          </ion-row>
-          <ion-row class='bottom-row'>
-            <ion-col>
-              <div>{{getDate(searchResult.testDate)}}</div>
-            </ion-col>
-            <ion-col>
-              <div>Driver no: {{searchResult.driverNumber}}</div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
+    <div *ngIf="searchResults$ | async as searchResults">
+      <ion-card *ngIf="hasSearched && searchResults.length === 0; else data">
+        <ion-card-content>
+          <p class="error-text">
+            There were no results found for <strong>{{searchInputFinal}}</strong>.
+          </p>
+          <p class="error-text">
+            Please check and try again.
+          </p>
+        </ion-card-content>
+      </ion-card>
+      <ng-template #data>
+        <ion-card *ngFor="let searchResult of searchResults">
+          <ion-card-content>
+            <ion-grid>
+              <ion-row class='top-row'>
+                <ion-col>
+                  <div>{{searchResult.costCode}}</div>
+                </ion-col>
+                <ion-col>
+                  <div>App ref: {{searchResult.applicationReference}}</div>
+                </ion-col>
+              </ion-row>
+              <ion-row class='middle-row'>
+                <ion-col>
+                  <h2>{{getTime(searchResult.testDate)}}</h2>
+                </ion-col>
+                <ion-col>
+                  <h3>{{getName(searchResult.candidateName)}}</h3>
+                </ion-col>
+                <ion-col>
+                  <h2>{{searchResult.category}}</h2>
+                </ion-col>
+                <ion-col>
+                  <h2>{{searchResult.activityCode}}</h2>
+                </ion-col>
+              </ion-row>
+              <ion-row class='bottom-row'>
+                <ion-col>
+                  <div>{{getDate(searchResult.testDate)}}</div>
+                </ion-col>
+                <ion-col>
+                  <div>Driver no: {{searchResult.driverNumber}}</div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ng-template>
+    </div>
   </ng-template>
 </ion-content>

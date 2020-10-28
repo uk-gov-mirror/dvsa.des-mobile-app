@@ -22,6 +22,7 @@ enum SearchBy {
 export class SearchPage implements OnInit {
 
   searchInput = '';
+  searchInputFinal = '';
   searchBy = SearchBy.ApplicationReference;
   hasSearched = false;
   searchResults$: Observable<SearchResultTestSchema[]>;
@@ -35,6 +36,7 @@ export class SearchPage implements OnInit {
   }
 
   onSearchByChange(val: SearchBy) {
+    this.hasSearched = false;
     this.searchInput = '';
     this.searchBy = val;
   }
@@ -52,6 +54,7 @@ export class SearchPage implements OnInit {
       this.store.dispatch(PerformApplicationReferenceSearch({ applicationReference: parseInt(this.searchInput, 10) }));
     }
 
+    this.searchInputFinal = this.searchInput;
     this.hasSearched = true;
   }
 
