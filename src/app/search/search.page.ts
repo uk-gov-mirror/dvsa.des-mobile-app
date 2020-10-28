@@ -21,6 +21,7 @@ enum SearchBy {
 })
 export class SearchPage implements OnInit {
 
+  searchInput = '';
   searchBy = SearchBy.ApplicationReference;
   hasSearched = false;
   searchResults$: Observable<SearchResultTestSchema[]>;
@@ -34,16 +35,21 @@ export class SearchPage implements OnInit {
   }
 
   onSearchByChange(val: SearchBy) {
+    this.searchInput = '';
     this.searchBy = val;
+  }
+
+  searchInputChanged(val: string) {
+    this.searchInput = val;
   }
 
   onSearchClick() {
     if (this.searchBy === SearchBy.DriverNumber) {
-      this.store.dispatch(PerformDriverNumberSearch({ driverNumber: 'ABC123EFG' }));
+      this.store.dispatch(PerformDriverNumberSearch({ driverNumber: this.searchInput }));
     }
 
     if (this.searchBy === SearchBy.ApplicationReference) {
-      this.store.dispatch(PerformApplicationReferenceSearch({ applicationReference: 123457 }));
+      this.store.dispatch(PerformApplicationReferenceSearch({ applicationReference: parseInt(this.searchInput, 10) }));
     }
 
     this.hasSearched = true;

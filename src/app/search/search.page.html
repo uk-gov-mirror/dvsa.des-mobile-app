@@ -31,7 +31,11 @@
       </ion-radio-group>
     </ion-list>
     <ion-card-content>
-      <ion-input id="search-input" placeholder="Enter a driver number or application reference"></ion-input>
+      <ion-input 
+        id="search-input" 
+        [placeholder]="searchBy === 'appReference' ? 'Enter an application reference' : 'Enter a driver number' "
+        [value]="searchInput"
+        (ionChange)="searchInputChanged($event.target.value)"></ion-input>
       <ion-button (click)="onSearchClick()">Search</ion-button>
     </ion-card-content>
   </ion-card>
@@ -39,6 +43,17 @@
   <div *ngIf="isLoading$ | async; else result" class='loading-spinner-container'>
     <ion-spinner name="crescent"></ion-spinner>
   </div>
+
+  <ion-card *ngIf="hasSearched && !(searchResults$ | async)">
+    <ion-card-content>
+      <p class="error-text">
+        There were no results found for your search.
+      </p>
+      <p class="error-text">
+        Please check and try again.
+      </p>
+    </ion-card-content>
+  </ion-card>
 
   <ng-template #result>
     <ion-card *ngFor="let searchResult of (searchResults$ | async)">
