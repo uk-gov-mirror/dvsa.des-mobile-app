@@ -13,9 +13,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environment';
 import { SearchStoreModel } from '../modules/search/search.module';
+import { SearchResultComponent } from './search/search-result/search-result.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SearchResultComponent],
   entryComponents: [],
   imports: [
     BrowserModule,

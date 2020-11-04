@@ -1,0 +1,28 @@
+.card {
+  background-color: white;
+  border-left: 8px solid #9b9b9b;
+  box-shadow: 0 1px 2px 0 #dddbde;
+  border-radius: 0;
+  color: black;
+
+  .grid {
+    padding: 18px 0;
+  }
+  .top-row {
+    letter-spacing: -0.48px;
+  }
+  .bottom-row {
+    letter-spacing: -0.48px;
+  }
+  .first-col {
+    padding-left: 20px;
+  }
+
+  ion-col {
+    padding: 0;
+  }
+
+  h2 {
+    margin: 0;
+  }
+}
