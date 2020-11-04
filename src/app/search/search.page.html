@@ -58,43 +58,7 @@
       </ion-card>
       <ng-template #data>
         <h3 *ngIf="searchResults.length > 0" id="result-number">Displaying {{searchResults.length}} result<span *ngIf="searchResults.length !== 1">s</span> found</h3>
-        <ion-card *ngFor="let searchResult of searchResults">
-          <ion-card-content class="search-result">
-            <ion-grid>
-              <ion-row class='top-row'>
-                <ion-col>
-                  <div>{{searchResult.costCode}}</div>
-                </ion-col>
-                <ion-col>
-                  <div>App ref: {{searchResult.applicationReference}}</div>
-                </ion-col>
-              </ion-row>
-              <ion-row class='middle-row'>
-                <ion-col size="6">
-                  <h1>{{getTime(searchResult.testDate)}}</h1>
-                </ion-col>
-                <ion-col>
-                  <h3>{{getName(searchResult.candidateName)}}</h3>
-                </ion-col>
-                <ion-col size="1">
-                  <h1>{{searchResult.category}}</h1>
-                </ion-col>
-                <ion-col size="1">
-                  <h1>{{searchResult.activityCode}}</h1>
-                </ion-col>
-              </ion-row>
-              <ion-row class='bottom-row'>
-                <ion-col>
-                  <div>{{getDate(searchResult.testDate)}}</div>
-                </ion-col>
-                <ion-col>
-                  <div>Driver no: {{searchResult.driverNumber}}</div>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card-content>
-        </ion-card>
-        <app-search-result></app-search-result>
+        <app-search-result *ngFor="let searchResult of searchResults" [searchResult]="searchResult"></app-search-result>
       </ng-template>
     </div>
   </ng-template>

@@ -17,19 +17,6 @@ export class SearchResultComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.searchResult = {
-      activityCode: '2',
-      applicationReference: 123456,
-      category: 'B',
-      costCode: 'EXTC1',
-      testDate: '2020-09-24T09:07:00',
-      driverNumber: 'ABC123EFG',
-      candidateName: {
-        firstName: 'Joe',
-        lastName: 'Blogs',
-        title: 'Mr',
-      },
-    };
   }
 
   getDate(date: string): string {
