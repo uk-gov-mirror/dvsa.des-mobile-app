@@ -1,8 +1,18 @@
 #search-input {
-  border: 1px solid #a1a1a1;
-  border-radius: 5px;
-  margin: 1rem 0;
-  color: #000;
+  margin-top: 26px;
+  width: 100%;
+  padding: 10px;
+  font-size: 24px;
+  color: black;
+  --padding-start: 10px;
+  --padding-top: 0px;
+  --padding-bottom: 0px;
+}
+
+.search-tests {
+  margin-top: 12px;
+  height: 56px;
+  width: 100%;
 }
 
 #result-number {
@@ -23,22 +33,4 @@
 
 .search-result {
   color: #000;
-}
-
-.card-ios {
-  margin: 12px 0 8px;
-  width: calc(100% - 2px); // allow room for box shadow on right hand side
-  border-left: 8px solid #9b9b9b;
-}
-.grid {
-  padding: 13px 0;
-}
-.top-row {
-  letter-spacing: -0.48px;
-}
-.bottom-row {
-  letter-spacing: -0.48px;
-}
-.first-col {
-  padding-left: 40px;
 }

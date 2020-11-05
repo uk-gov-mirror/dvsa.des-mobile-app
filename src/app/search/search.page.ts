@@ -36,7 +36,6 @@ export class SearchPage implements OnInit {
   }
 
   onSearchByChange(val: SearchBy) {
-    console.log(val);
     this.hasSearched = false;
     this.searchInput = '';
     this.searchBy = val;
