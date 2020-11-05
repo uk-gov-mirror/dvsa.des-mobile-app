@@ -12,6 +12,44 @@
     <ion-card-header>
       <ion-card-title>Candidate details</ion-card-title>
     </ion-card-header>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <label>Search by</label>
+        </ion-col>
+        <ion-col>
+          <input 
+            id="search-by-app-reference"
+            class="gds-radio-button"
+            name="searchBy"
+            value="appReference"
+            type="radio"
+            [checked]="searchBy === 'appReference'"
+            (change)="onSearchByChange($event.target.value)">
+          <label for="search-by-app-reference" class="radio-label">Application reference</label>
+        </ion-col>
+        <ion-col>
+          <input 
+            id="search-by-driver-number"
+            class="gds-radio-button"
+            name="searchBy"
+            value="driverNumber"
+            type="radio"
+            [checked]="searchBy === 'driverNumber'"
+            (change)="onSearchByChange($event.target.value)">
+          <label for="search-by-driver-number" class="radio-label">Driver number</label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input type="text">
+
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
     <ion-list>
       <ion-radio-group value="appReference" (ionChange)="onSearchByChange($event.target.value)">
