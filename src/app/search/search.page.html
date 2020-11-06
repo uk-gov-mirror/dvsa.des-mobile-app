@@ -3,62 +3,61 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Search Tests</ion-title>
+    <ion-title>Search tests</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Candidate details</ion-card-title>
-    </ion-card-header>
-    <ion-grid>
-      <ion-row class="ion-align-items-center">
-        <ion-col>
-          <label class="component-label">Search by</label>
-        </ion-col>
-        <ion-col size="5">
-          <input 
-            id="search-by-app-reference"
-            class="gds-radio-button"
-            name="searchBy"
-            value="appReference"
-            type="radio"
-            [checked]="searchBy === 'appReference'"
-            (change)="onSearchByChange($event.target.value)">
-          <label for="search-by-app-reference" class="radio-label">Application reference</label>
-        </ion-col>
-        <ion-col size="4">
-          <input 
-            id="search-by-driver-number"
-            class="gds-radio-button"
-            name="searchBy"
-            value="driverNumber"
-            type="radio"
-            [checked]="searchBy === 'driverNumber'"
-            (change)="onSearchByChange($event.target.value)">
-          <label for="search-by-driver-number" class="radio-label">Driver number</label>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-padding-horizontal">
-        <ion-col>
-          <ion-input
-            [placeholder]="searchBy === 'appReference' ? 'Enter an application reference' : 'Enter a driver number' "
-            id="search-input"
-            type="text"
-            [value]="searchInput"
-            (ionChange)="searchInputChanged($event.target.value)"></ion-input>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-padding-horizontal">
-        <ion-col>
-          <ion-button class="mes-primary-button search-tests" expand="block" (click)="onSearchClick()">
-              <span>Search tests</span>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
+  <app-tabs (activeTabSelected)="activeSearchTabSelected($event)">
+    <app-tab [active]="true" title="Candidate details" id="tab-search-candidate-details">
+      <ion-grid>
+        <ion-row class="ion-align-items-center ion-padding-top">
+          <ion-col>
+            <label class="component-label">Search by</label>
+          </ion-col>
+          <ion-col size="5">
+            <input 
+              id="search-by-app-reference"
+              class="gds-radio-button"
+              name="searchBy"
+              value="appReference"
+              type="radio"
+              [checked]="searchBy === 'appReference'"
+              (change)="onSearchByChange($event.target.value)">
+            <label for="search-by-app-reference" class="radio-label">Application reference</label>
+          </ion-col>
+          <ion-col size="4">
+            <input 
+              id="search-by-driver-number"
+              class="gds-radio-button"
+              name="searchBy"
+              value="driverNumber"
+              type="radio"
+              [checked]="searchBy === 'driverNumber'"
+              (change)="onSearchByChange($event.target.value)">
+            <label for="search-by-driver-number" class="radio-label">Driver number</label>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-padding-horizontal">
+          <ion-col>
+            <ion-input
+              [placeholder]="searchBy === 'appReference' ? 'Enter an application reference' : 'Enter a driver number' "
+              id="search-input"
+              type="text"
+              [value]="searchInput"
+              (ionChange)="searchInputChanged($event.target.value)"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-padding-horizontal">
+          <ion-col>
+            <ion-button class="mes-primary-button search-tests" expand="block" (click)="onSearchClick()">
+                <span>Search tests</span>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </app-tab>
+  </app-tabs>
 
   <div *ngIf="isLoading$ | async; else result" class='loading-spinner-container'>
     <ion-spinner name="crescent"></ion-spinner>

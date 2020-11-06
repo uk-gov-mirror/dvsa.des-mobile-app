@@ -14,9 +14,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environment';
 import { SearchStoreModel } from '../modules/search/search.module';
 import { SearchResultComponent } from './search/search-result/search-result.component';
+import { TabsComponent } from './common/tabs/tabs.component';
+import { TabComponent } from './common/tab/tab.component';
 
 @NgModule({
-  declarations: [AppComponent, SearchResultComponent],
+  declarations: [AppComponent, SearchResultComponent, TabsComponent, TabComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
