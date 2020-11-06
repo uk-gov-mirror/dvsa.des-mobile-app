@@ -65,16 +65,14 @@
 
   <ng-template #result>
     <div *ngIf="searchResults$ | async as searchResults">
-      <ion-card *ngIf="hasSearched && searchResults.length === 0; else data">
-        <ion-card-content>
-          <p class="error-text">
-            There were no results found for "<strong>{{searchInputFinal}}</strong>"
-          </p>
-          <p class="error-text">
-            Please check and try again.
-          </p>
-        </ion-card-content>
-      </ion-card>
+      <div *ngIf="hasSearched && searchResults.length === 0; else data">
+        <p class="error-text">
+          There were no results found for "<strong>{{searchInputFinal}}</strong>"
+        </p>
+        <p class="error-text">
+          Please check and try again.
+        </p>
+      </div>
       <ng-template #data>
         <h3 *ngIf="searchResults.length > 0" id="result-number">Displaying {{searchResults.length}} result<span *ngIf="searchResults.length !== 1">s</span> found</h3>
         <app-search-result *ngFor="let searchResult of searchResults" [searchResult]="searchResult"></app-search-result>
