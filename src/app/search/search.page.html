@@ -40,12 +40,15 @@
         </ion-row>
         <ion-row class="ion-padding-horizontal">
           <ion-col>
-            <ion-input
-              [placeholder]="searchBy === 'appReference' ? 'Enter an application reference' : 'Enter a driver number' "
-              id="search-input"
-              type="text"
-              [value]="searchInput"
-              (ionChange)="searchInputChanged($event.target.value)"></ion-input>
+            <ion-item>
+              <ion-input
+                [placeholder]="searchBy === 'appReference' ? 'Enter an application reference' : 'Enter a driver number' "
+                id="search-input"
+                class="custom-input"
+                type="text"
+                [value]="searchInput"
+                (ionChange)="searchInputChanged($event.target.value)"></ion-input>
+            </ion-item>
           </ion-col>
         </ion-row>
         <ion-row class="ion-padding-horizontal">
