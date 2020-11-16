@@ -6,6 +6,11 @@
 
   /** custom set variables **/
   --ion-background-color: #efefee;
+  --ion-toolbar-background: #212121;
+  --ion-toolbar-color: #efefee;
+  ion-content {
+    --background: #f9f9f9;
+  }
   --ion-card-color: #000000;
   --padding-start: 10px;
   --padding-end: 10px;
