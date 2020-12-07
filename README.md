@@ -19,6 +19,15 @@ DVSA Driving Examiner Application
 - For simulator `ionic cap run ios -l --external` this will open xcode where you can select your device and click play
 - For browser `ionic serve`
 
+### Generate folder structure
+Run the following commands in this order
+
+- `bash scripts/page-generator.sh`
+- `bash scripts/install-ngrx.sh`
+- `bash scripts/generate-store.sh`
+- `bash scripts/move-tests.sh`
+- `bash scripts/clean-repo.sh` - if you want to reset the changes that the scripts introduced
+
 ### TODO
 
 #### Config
