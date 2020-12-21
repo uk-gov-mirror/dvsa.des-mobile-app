@@ -3,6 +3,7 @@ import { Plugins } from '@capacitor/core';
 import { Insomnia } from '@ionic-native/insomnia/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AlertController } from '@ionic/angular';
 
 const { Device, Network } = Plugins;
 
@@ -24,25 +25,40 @@ export class NativePluginsTestPage implements OnInit {
     private insomnia: Insomnia,
     private screenOrientation: ScreenOrientation,
     private statusBar: StatusBar,
+    private alertCtrl: AlertController,
   ) { }
 
   ngOnInit() {
   }
 
-  printCordovaPlugins() {
+  async showAlert(title: string, message: string): Promise<any> {
+
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: title,
+      message: message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  async printCordovaPlugins() {
     if (typeof cordova !== 'undefined') {
-      console.log('### cordova plugins');
-      console.log(JSON.stringify(Object.keys(cordova.plugins)));
+      await this.showAlert('Cordova plugins', JSON.stringify(Object.keys(cordova.plugins)));
     } else {
-      console.log('### cordova is undefined');
+      await this.showAlert('Cordova plugins', 'Cordova is undefined');
     }
   }
 
-  toggleInsomnia() {
-    this.insomniaEnabled ? this.insomnia.allowSleepAgain() : this.insomnia.keepAwake();
+  async toggleInsomnia() {
+    this.insomniaEnabled ? await this.insomnia.allowSleepAgain() : await this.insomnia.keepAwake();
+    await this.showAlert('toggleInsomnia', 'toggleInsomnia done');
   }
 
-  toggleScreenOrientationLock() {
+  async toggleScreenOrientationLock() {
+    this.screenOrientationLocked = !this.screenOrientationLocked;
+    await this.showAlert('toggleScreenOrientationLock', this.screenOrientationLocked.toString());
     this.screenOrientationLocked ?
       this.screenOrientation.unlock() :
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
@@ -52,45 +68,64 @@ export class NativePluginsTestPage implements OnInit {
     this.statusBarShowing ? this.statusBar.hide() : this.statusBar.show();
   }
 
-  toggleASAM() {
+  async toggleASAM() {
     this.ASAM = !this.ASAM;
-    cordova.plugins.ASAM.toggle(this.ASAM, (didSucceed: boolean) => {
+    cordova.plugins.ASAM.toggle(this.ASAM, async (didSucceed: boolean) => {
       const logMessage = `Call to ${this.ASAM ? 'enable' : 'disable'} ASAM ${didSucceed ? 'succeeded' : 'failed'}`;
-      console.log(logMessage);
+      await this.showAlert('toggleASAM', logMessage);
       if (!didSucceed) {
         const logError = `${this.ASAM ? 'Enabling' : 'Disabling'} ASAM`;
-        console.error(logError);
+        await this.showAlert('toggleASAM', logError);
       }
     });
   }
 
-  toggleIsDebug() {
-    cordova.plugins.IsDebug.getIsDebug(() => {
-      console.log('Detected that app is running in debug mode');
-    }, (err: any) => {
-      console.error('debug mode error');
+  async toggleIsDebug() {
+    cordova.plugins.IsDebug.getIsDebug(async () => {
+      await this.showAlert('toggleIsDebug', 'Detected that app is running in debug mode');
+    }, async (err: any) => {
+      await this.showAlert('toggleIsDebug', 'debug mode error');
     });
   }
 
-  toggleDeviceAuth() {
+  asynctoggleDeviceAuth() {
     cordova.plugins.DeviceAuthentication.runAuthentication(
       'Please enter your passcode',
-      (successful: boolean) => {
-        console.log('device auth success');
+      async (successful: boolean) => {
+        await this.showAlert('asynctoggleDeviceAuth', 'device auth success');
       },
-      () => {
-        console.log('device auth error');
+      async () => {
+        await this.showAlert('asynctoggleDeviceAuth', 'device auth error');
       });
   }
 
   async printDeviceInfo() {
     const info = await Device.getInfo();
-    console.log(info);
+    await this.showAlert('printDeviceInfo', JSON.stringify(info));
   }
 
   async printNetworkStatus() {
     const status = await Network.getStatus();
-    console.log(status);
+    await this.showAlert('printNetworkStatus', JSON.stringify(status));
+  }
+
+  async printMDMConfig() {
+    const appConfigPlugin = cordova.plugins.AppConfig;
+
+    const env = {
+      configUrl: appConfigPlugin.getValue('configUrl'),
+      daysToCacheJournalData: appConfigPlugin.getValue('daysToCacheJournalData'),
+      daysToCacheLogs: appConfigPlugin.getValue('daysToCacheLogs'),
+      isRemote: true,
+      logsAutoSendInterval: appConfigPlugin.getValue('logsAutoSendInterval'),
+      authentication: {
+        employeeIdKey: appConfigPlugin.getValue('employeeIdKey'),
+        logoutUrl: appConfigPlugin.getValue('logoutUrl'),
+        redirectUrl: appConfigPlugin.getValue('redirectUrl'),
+      },
+    }
+
+    await this.showAlert('printMDMConfig', JSON.stringify(env));
   }
 
 }
