@@ -31,12 +31,12 @@ export class NativePluginsTestPage implements OnInit {
   ngOnInit() {
   }
 
-  async showAlert(title: string, message: string): Promise<any> {
+  async showAlert(header: string, message: string): Promise<any> {
 
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
-      header: title,
-      message: message,
+      header,
+      message,
       buttons: ['OK']
     });
 
@@ -123,7 +123,7 @@ export class NativePluginsTestPage implements OnInit {
         logoutUrl: appConfigPlugin.getValue('logoutUrl'),
         redirectUrl: appConfigPlugin.getValue('redirectUrl'),
       },
-    }
+    };
 
     await this.showAlert('printMDMConfig', JSON.stringify(env));
   }
