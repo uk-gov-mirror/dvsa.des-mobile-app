@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Plugins } from '@capacitor/core';
 import { Insomnia } from '@ionic-native/insomnia/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AlertController } from '@ionic/angular';
 
-const { Device, Network } = Plugins;
+const { Device, Network, StatusBar } = Plugins;
 
 declare var cordova: any;
 
@@ -24,11 +23,17 @@ export class NativePluginsTestPage implements OnInit {
   constructor(
     private insomnia: Insomnia,
     private screenOrientation: ScreenOrientation,
-    private statusBar: StatusBar,
     private alertCtrl: AlertController,
   ) { }
 
   ngOnInit() {
+
+    this.screenOrientation.onChange().subscribe(
+      () => {
+          console.log('### Orientation Changed');
+      }
+   );
+
   }
 
   async showAlert(header: string, message: string): Promise<any> {
@@ -57,15 +62,17 @@ export class NativePluginsTestPage implements OnInit {
   }
 
   async toggleScreenOrientationLock() {
-    this.screenOrientationLocked = !this.screenOrientationLocked;
-    await this.showAlert('toggleScreenOrientationLock', this.screenOrientationLocked.toString());
+    console.log(this.screenOrientation.type); // logs the current orientation, example: 'landscape'
     this.screenOrientationLocked ?
       this.screenOrientation.unlock() :
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+    this.screenOrientationLocked = !this.screenOrientationLocked;
+    await this.showAlert('toggleScreenOrientationLock', this.screenOrientationLocked.toString());
   }
 
   toggleStatusBar() {
-    this.statusBarShowing ? this.statusBar.hide() : this.statusBar.show();
+    this.statusBarShowing ? StatusBar.hide() : StatusBar.show();
+    this.statusBarShowing = !this.statusBarShowing;
   }
 
   async toggleASAM() {
