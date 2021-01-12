@@ -3,6 +3,7 @@ import { Plugins } from '@capacitor/core';
 import { Insomnia } from '@ionic-native/insomnia/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { AlertController } from '@ionic/angular';
+import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 
 const { Device, Network, StatusBar } = Plugins;
 
@@ -24,9 +25,12 @@ export class NativePluginsTestPage implements OnInit {
     private insomnia: Insomnia,
     private screenOrientation: ScreenOrientation,
     private alertCtrl: AlertController,
+    private ga: GoogleAnalytics,
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+
+    await this.startGa();
 
     this.screenOrientation.onChange().subscribe(
       () => {
@@ -73,6 +77,18 @@ export class NativePluginsTestPage implements OnInit {
   toggleStatusBar() {
     this.statusBarShowing ? StatusBar.hide() : StatusBar.show();
     this.statusBarShowing = !this.statusBarShowing;
+  }
+
+  async startGa() {
+    try {
+      await this.ga.startTrackerWithId('YOUR_TRACKER_ID');
+      console.log('Google analytics is ready now');
+      this.ga.trackView('test');
+      // Tracker is ready
+      // You can now track pages or set additional information such as AppVersion or UserId
+    } catch (err) {
+      console.log('Error starting GoogleAnalytics', err);
+    }
   }
 
   async toggleASAM() {

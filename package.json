@@ -22,7 +22,7 @@
     "@capacitor/core": "^2.4.5",
     "@capacitor/ios": "^2.4.2",
     "@ionic-native/core": "^5.0.0",
-    "@ionic-native/google-analytics": "^5.28.0",
+    "@ionic-native/google-analytics": "^5.30.0",
     "@ionic-native/insomnia": "^5.28.0",
     "@ionic-native/mobile-accessibility": "^5.28.0",
     "@ionic-native/screen-orientation": "^5.30.0",
