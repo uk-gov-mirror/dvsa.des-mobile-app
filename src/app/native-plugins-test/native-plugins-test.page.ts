@@ -5,10 +5,12 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { AlertController } from '@ionic/angular';
 import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 import { IsDebug } from '@ionic-native/is-debug/ngx';
+import { SecureStorage } from '@ionic-native/secure-storage/ngx';
 
 const { Device, Network, StatusBar } = Plugins;
 
 declare var cordova: any;
+declare var window: any;
 
 @Component({
   selector: 'app-native-plugins-test',
@@ -28,6 +30,7 @@ export class NativePluginsTestPage implements OnInit {
     private alertCtrl: AlertController,
     private ga: GoogleAnalytics,
     private isDebug: IsDebug,
+    private secureStorage: SecureStorage,
   ) { }
 
   async ngOnInit() {
@@ -52,6 +55,26 @@ export class NativePluginsTestPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  async testSecureStorage() {
+    const key = 'DES';
+    const storage = await this.secureStorage.create(key);
+    storage.keys().then(async (response: string[]) => {
+      await this.showAlert('testSecureStorage', response.toString());
+    });
+
+    storage.set(key, 'testValue').then(async (response: string) => {
+      console.log(`🚀 ~ file: native-plugins-test.page.ts ~ line 68 ~ storage.set ~ response`, response);
+      await this.showAlert('testSecureStorageSuccess', '');
+    }).catch(async (error) => {
+      await this.showAlert('testSecureStorageError', error);
+    });
+
+    storage.get(key).then(async (response: string) => {
+      console.log(`🚀 ~ file: native-plugins-test.page.ts ~ line 74 ~ storage.get ~ response`, response);
+      await this.showAlert('get secure storage', response);
+    });
   }
 
   async printCordovaPlugins() {
@@ -120,6 +143,11 @@ export class NativePluginsTestPage implements OnInit {
       async () => {
         await this.showAlert('asynctoggleDeviceAuth', 'device auth error');
       });
+  }
+
+  toggleZoom() {
+    window.MobileAccessibility.getTextZoom(async zoomLevel => await this.showAlert('textZoomLevel', zoomLevel));
+    window.MobileAccessibility.usePreferredTextZoom(true);
   }
 
   async printDeviceInfo() {

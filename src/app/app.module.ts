@@ -8,6 +8,7 @@ import { Insomnia } from '@ionic-native/insomnia/ngx';
 import { MobileAccessibility } from '@ionic-native/mobile-accessibility/ngx';
 import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 import { IsDebug } from '@ionic-native/is-debug/ngx';
+import { SecureStorage } from '@ionic-native/secure-storage/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
     MobileAccessibility,
     GoogleAnalytics,
     IsDebug,
+    SecureStorage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
