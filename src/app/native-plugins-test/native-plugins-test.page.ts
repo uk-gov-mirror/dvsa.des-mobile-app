@@ -4,6 +4,7 @@ import { Insomnia } from '@ionic-native/insomnia/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { AlertController } from '@ionic/angular';
 import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
+import { IsDebug } from '@ionic-native/is-debug/ngx';
 
 const { Device, Network, StatusBar } = Plugins;
 
@@ -26,6 +27,7 @@ export class NativePluginsTestPage implements OnInit {
     private screenOrientation: ScreenOrientation,
     private alertCtrl: AlertController,
     private ga: GoogleAnalytics,
+    private isDebug: IsDebug,
   ) { }
 
   async ngOnInit() {
@@ -104,11 +106,9 @@ export class NativePluginsTestPage implements OnInit {
   }
 
   async toggleIsDebug() {
-    cordova.plugins.IsDebug.getIsDebug(async () => {
-      await this.showAlert('toggleIsDebug', 'Detected that app is running in debug mode');
-    }, async (err: any) => {
-      await this.showAlert('toggleIsDebug', 'debug mode error');
-    });
+    this.isDebug.getIsDebug()
+    .then(async isDebug => await this.showAlert('toggleIsDebug', `Is app in debug mode ${isDebug}`))
+    .catch(async err => await this.showAlert('toggleIsDebug', 'debug mode error'));
   }
 
   asynctoggleDeviceAuth() {

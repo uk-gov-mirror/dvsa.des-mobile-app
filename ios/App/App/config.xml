@@ -26,6 +26,10 @@
     <param name="ios-package" value="Insomnia"/>
   </feature>
 
+  <feature name="IsDebug">
+    <param name="ios-package" value="IsDebug"/>
+  </feature>
+
   <feature name="NetworkStatus">
     <param name="ios-package" value="CDVConnection"/>
   </feature>

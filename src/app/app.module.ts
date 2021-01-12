@@ -7,6 +7,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { Insomnia } from '@ionic-native/insomnia/ngx';
 import { MobileAccessibility } from '@ionic-native/mobile-accessibility/ngx';
 import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
+import { IsDebug } from '@ionic-native/is-debug/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
     Insomnia,
     MobileAccessibility,
     GoogleAnalytics,
+    IsDebug,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
