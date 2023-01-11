@@ -16,7 +16,7 @@
         <ion-col size="24" *ngIf="emergencyStop.firstAttempt !== undefined">
           <ion-row class="ion-no-padding">
             <ion-col size="34">
-              <div class="black-text">1st:</div>
+              <div class="opposing-text">1st:</div>
             </ion-col>
             <ion-col>
               <div>
@@ -31,7 +31,7 @@
         <ion-col size="24" *ngIf="emergencyStop.secondAttempt !== undefined">
           <ion-row class="ion-no-padding">
             <ion-col size="32">
-              <div class="black-text">2nd:</div>
+              <div class="opposing-text">2nd:</div>
             </ion-col>
             <ion-col>
               <div>
@@ -61,10 +61,10 @@
         </ion-col>
 
         <ion-col size="12">
-          <div addOrRemoveLangCy class="box-padding black-text ion-nowrap" *ngIf="!emergencyStop.outcome">
+          <div addOrRemoveLangCy class="box-padding opposing-text ion-nowrap" *ngIf="!emergencyStop.outcome">
             {{ 'debrief.speedRequirementMet' | translate }}
           </div>
-          <div addOrRemoveLangCy class="box-padding black-text ion-nowrap" *ngIf="emergencyStop.outcome">
+          <div addOrRemoveLangCy class="box-padding opposing-text ion-nowrap" *ngIf="emergencyStop.outcome">
             {{ 'debrief.speedRequirementNotMet' | translate }}
           </div>
         </ion-col>
@@ -78,7 +78,7 @@
         <ion-col size="24" *ngIf="avoidance.firstAttempt !== undefined">
           <ion-row class="ion-no-padding">
             <ion-col size="34">
-              <div class="black-text">1st:</div>
+              <div class="opposing-text">1st:</div>
             </ion-col>
             <ion-col>
               <div>
@@ -91,7 +91,7 @@
         <ion-col size="24" *ngIf="avoidance.secondAttempt !== undefined">
           <ion-row class="ion-no-padding">
             <ion-col size="32">
-              <div class="black-text">2nd:</div>
+              <div class="opposing-text">2nd:</div>
             </ion-col>
             <ion-col>
               <div>
@@ -119,10 +119,10 @@
         </ion-col>
 
         <ion-col size="12">
-          <div addOrRemoveLangCy class="box-padding black-text ion-nowrap" *ngIf="!avoidance.outcome">
+          <div addOrRemoveLangCy class="box-padding opposing-text ion-nowrap" *ngIf="!avoidance.outcome">
             {{ 'debrief.speedRequirementMet' | translate }}
           </div>
-          <div addOrRemoveLangCy class="box-padding black-text ion-nowrap" *ngIf="avoidance.outcome">
+          <div addOrRemoveLangCy class="box-padding opposing-text ion-nowrap" *ngIf="avoidance.outcome">
             {{ 'debrief.speedRequirementNotMet' | translate }}
           </div>
         </ion-col>
@@ -134,7 +134,7 @@
 
 <ng-template #SpeedFormat let-speed="speed">
   <ng-container *ngIf="speed != 0; else Aborted;">
-    <span class="black-text">{{speed}}km/h</span>
+    <span class="opposing-text">{{speed}}km/h</span>
   </ng-container>
 </ng-template>
 
