@@ -11,27 +11,24 @@
         <input
           type="radio"
           [id]="'transmission-manual-'+uniqueId"
+          class="gds-radio-button"
           formControlName="transmissionCtrl"
           name="transmissionCtrl"
-          [ngClass]="style === 1? 'gds-radio-button-1' : 'gds-radio-button-2'"
           [class.ng-invalid]="isInvalid()"
           (change)="transmissionChanged($event.target.value)"
           value="Manual"
-        />
-        <label [for]="'transmission-manual-'+uniqueId" class="radio-label" id="transmission-manual-label">
-          Manual
-        </label>
+        /> <label [for]="'transmission-manual-'+uniqueId" class="radio-label" id="transmission-manual-label">
+        Manual
+      </label>
       </ion-col>
       <ion-col class="ion-align-items-center display-flex">
-        <input
-          type="radio"
-          [id]="'transmission-automatic-'+uniqueId"
-          formControlName="transmissionCtrl"
-          name="transmissionCtrl"
-          [ngClass]="style === 1? 'gds-radio-button-1' : 'gds-radio-button-2'"
-          [class.ng-invalid]="isInvalid()"
-          (change)="transmissionChanged($event.target.value)"
-          value="Automatic"
+        <input type="radio" [id]="'transmission-automatic-'+uniqueId"
+               class="gds-radio-button"
+               formControlName="transmissionCtrl"
+               name="transmissionCtrl"
+               [class.ng-invalid]="isInvalid()"
+               (change)="transmissionChanged($event.target.value)"
+               value="Automatic"
         />
         <label [for]="'transmission-automatic-'+uniqueId" class="radio-label" id="transmission-automatic-label">
           Automatic
