@@ -30,6 +30,8 @@
             [averageColour]="averageColour"
             [strokeColour]="strokeColour"
             [labelColour]="labelColour"
+            [dataLabelBackgroundColour]="dataLabelBackgroundColour"
+            [dataLabelFontColour]="dataLabelFontColour"
             [passedData]="passedData"
           >
           </chart>
@@ -57,6 +59,7 @@
       <ion-row class="ion-padding-top" *ngIf="useGrid && showExpandedData">
         <ion-col class="ion-no-padding">
           <data-grid
+            class="mes-opposing-colour"
             id="record-card-data-grid-{{chartID}}"
             [gridID]="chartID"
             [headers]="gridHeaders"
@@ -88,9 +91,9 @@
       <div *ngIf="canExpand && (useGrid || hasCustomExpandedContent)">
         <ion-row class="padding-top-18 mes-row-separator"></ion-row>
         <ion-row class="padding-top-18 display-flex ion-justify-content-center">
-          <ion-text id="record-card-tap-to-change-text-{{chartID}}">{{ getTapText('Tap to hide data', 'Tap to show data') }}</ion-text>
+          <ion-text class="mes-opposing-colour" id="record-card-tap-to-change-text-{{chartID}}">{{ getTapText('Tap to hide data', 'Tap to show data') }}</ion-text>
           <ion-col size="2"></ion-col>
-          <ion-icon id="record-card-tap-to-change-icon-{{chartID}}" size="large" [name]="getTapText('chevron-up-outline','chevron-down-outline')"></ion-icon>
+          <ion-icon class="mes-opposing-colour" id="record-card-tap-to-change-icon-{{chartID}}" size="large" [name]="getTapText('chevron-up-outline','chevron-down-outline')"></ion-icon>
         </ion-row>
       </div>
     </div>
