@@ -1,14 +1,15 @@
 <ion-row *ngIf="shouldRender" class="text-spacing">
   <ion-col>
-    <button class="conducted-language-link" (click)="englishTextSelected()" [ngClass]="{ focused : welshIsSelected }">
+    <button class="conducted-language-link"
+            (click)="englishTextSelected()"
+            [ngClass]="{ focused : welshIsSelected }">
       English
     </button>
     |
     <button
-      class="conducted-language-link conducted-language-link-welsh"
+      class="conducted-language-link"
       (click)="welshTextSelected()"
-      [ngClass]="{ focused : englishIsSelected }"
-    >
+      [ngClass]="{ focused : englishIsSelected }">
       Cymraeg
     </button>
   </ion-col>
