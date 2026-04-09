@@ -1,8 +1,8 @@
 <competency-button
   class="legal-button"
-  [onTap]="toggleLegalRequirement"
-  [onPress]="toggleLegalRequirement"
-  [ripple]="false"
+  (onTap)="toggleLegalRequirement()"
+  (onPress)="toggleLegalRequirement()"
+  [allowRipple]="false"
   [disabled]="disabled"
   [ngClass]="{
     'complete': ticked,
