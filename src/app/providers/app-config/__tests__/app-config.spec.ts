@@ -1,4 +1,4 @@
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpErrorResponse, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { IsDebug } from '@awesome-cordova-plugins/is-debug/ngx';
@@ -8,7 +8,6 @@ import { Platform } from '@ionic/angular';
 import { IsDebugMock, PlatformMock } from '@mocks/index.mock';
 import { StoreModule } from '@ngrx/store';
 import { AppConfig } from '@providers/app-config/app-config.model';
-import { AuthenticationError } from '@providers/authentication/authentication.constants';
 import { appConfigReducer } from '@store/app-config/app-config.reducer';
 import { testsReducer } from '@store/tests/tests.reducer';
 import { AppInfoProviderMock } from '../../app-info/__mocks__/app-info.mock';
@@ -360,17 +359,31 @@ describe('AppConfigProvider', () => {
 
   describe('shouldGetCachedConfig', () => {
     it('should return true for non-auth errors', () => {
-      const result = (appConfig as any).shouldGetCachedConfig('SOME_ERROR');
+      const result = (appConfig as any).shouldGetCachedConfig(
+        new HttpErrorResponse({
+          error: '',
+        })
+      );
       expect(result).toBe(true);
     });
 
-    it('should return false for USER_NOT_AUTHORISED error', () => {
-      const result = (appConfig as any).shouldGetCachedConfig(AuthenticationError.USER_NOT_AUTHORISED);
+    it('should return false for 403 status', () => {
+      const result = (appConfig as any).shouldGetCachedConfig(
+        new HttpErrorResponse({
+          error: '',
+          status: 403,
+        })
+      );
       expect(result).toBe(false);
     });
 
     it('should return false for INVALID_APP_VERSION error', () => {
-      const result = (appConfig as any).shouldGetCachedConfig(AppConfigError.INVALID_APP_VERSION);
+      const result = (appConfig as any).shouldGetCachedConfig(
+        new HttpErrorResponse({
+          error: AppConfigError.INVALID_APP_VERSION,
+          status: 403,
+        })
+      );
       expect(result).toBe(false);
     });
   });
